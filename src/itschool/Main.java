@@ -1,7 +1,11 @@
 package itschool;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
+/*
         task1();
         task2();
         task3();
@@ -11,6 +15,57 @@ public class Main {
         task4Hard();
 
         hometask7();
+*/
+        hometask6();
+    }
+
+    private static void hometask6() {
+        final int VALUE = 60;
+        int[] values = new int[VALUE];
+        Random random = new Random();
+        int personalScore = 0;
+        for (int i = 0; i < values.length; i++) {
+            values[i] = random.nextInt(50); // [0..N)
+        }
+        System.out.println(Arrays.toString(values));
+        int[] copy = values.clone();
+
+        for (int i = 0; i < values.length; i++) {
+            for (int j = i + 1; j < values.length; j++) {
+                if (values[i] == values[j]) {
+                    values[j] = 0;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(values));
+
+        final int K = 0;
+
+/*
+        for (int i = 0; i < K; i++) {
+            newArr[i] = copy[i];
+        }
+        for (int i = K; i < copy.length; i++) {
+            newArr[i-1] = copy[i];
+        }
+*/
+
+        System.out.println(Arrays.toString(copy));
+        System.out.println(Arrays.toString(deleteElementAt(copy, K)));
+        System.out.println(Arrays.toString(copy));
+    }
+
+    private static int[] deleteElementAt(int[] copy, int K) {
+        int[] newArr = new int[copy.length - 1];
+
+        for (int i = 0, j = 0; i < copy.length; i++, j++) {
+            newArr[j] = copy[i];
+            if (i == K) {
+                j--;
+            }
+        }
+        copy = newArr;
+        return copy;
     }
 
     private static void task1() {
